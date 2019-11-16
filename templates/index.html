@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body> 
+    <div class="container">
+        <div class="jumbotron text-center" style="background-color:rgb(55, 83, 110);">
+          <h1 style="font-weight: bold; color: white;">Mission to Mars</h1>
+          <p><a class="btn btn-primary btn-lg" style="background-color:peru;" href="/scrape" role="button">Get Data!</a></p>
+        </div>
+
+        <div class="row" id="news">
+            <div class="col-md-12">
+                <h3 style="font-weight: bold;">Latest Mars News</h3>
+                    <h4>{{mars.news_title}}</h4>
+                        <p>{{mars.news_p}}</p>
+            </div>
+        </div>
+
+        <div class="row" id="images">
+            <div class="col-md-5">
+                <h3 style="font-weight: bold;">Featured Mars Image</h3>
+                <img class="img-fluid" src = "{{mars.featured_image_url}}" alt = "Mars Image">
+            </div>
+            <div class = "col-md-2"></div>
+            <div class = "col-md-5">
+                <h4 style="font-weight: bold;">Current Weather on Mars</h4>
+                <p>{{mars.mars_weather}}</p>
+                <br>
+                <h4 style="font-weight: bold;">Mars Facts</h4>
+                <p>{{mars.mars_facts | safe}}</p>
+            </div>        
+        </div>
+        
+        <div class ="row" id="hemispheres">
+            <div class = "col-md-12">
+                <h3 style="font-weight: bold;"><center>Mars Hemispheres</center></h3>
+            </div>
+                {% for hemisphere in mars.hemisphere_image_urls %}
+                    <div class = "col-md-3">
+                        <div class = "thumbnail">
+                            <img class="img-fluid" src = "{{hemisphere.image_url}}" alt = "{{hemisphere.title}}">
+                                <h3>{{hemisphere.title}}</h3>
+                        </div>
+                    </div>
+                {% endfor %}            
+            </div>           
+        </div>
+    </body>
+</html>
